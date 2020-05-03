@@ -1,0 +1,68 @@
+﻿<Window x:Class="Lagrande.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lagrande"
+        xmlns:functioninput="clr-namespace:Lagrande.FunctionInput"
+        xmlns:constraints="clr-namespace:Lagrande.Constraints"
+        xmlns:solution="clr-namespace:Lagrande.Solution"
+        xmlns:initialvariable="clr-namespace:Lagrande.InitialVariable"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:history="clr-namespace:Lagrande.History"
+        xmlns:header="clr-namespace:Lagrande.Header"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1200" WindowState="Maximized">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <header:HeaderView Margin="0 10 0 0"/>
+            <Grid Grid.Row="1">
+                <functioninput:FunctionInput VerticalAlignment="Center" HorizontalAlignment="Stretch" DataContext="{Binding FunctionInputViewModel}"></functioninput:FunctionInput>
+                <Rectangle HorizontalAlignment="Stretch" Fill="Black" Height="1" VerticalAlignment="Bottom"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <initialvariable:InitialVariableView Margin="5 0 0 0" Grid.Column="0" DataContext="{Binding InitialVariableViewModel}"/>
+            <Grid Grid.Column="1">
+                <constraints:ConstraintsView Margin="0 0 5 0" HorizontalAlignment="Stretch"  DataContext="{Binding ConstraintsViewModel}"/>
+                <Rectangle Grid.Row="1" VerticalAlignment="Stretch" Fill="Black" Width="1" HorizontalAlignment="Left"/>
+            </Grid>
+        </Grid>
+        <Rectangle Grid.Row="1" VerticalAlignment="Stretch" Fill="Black" Width="1" HorizontalAlignment="Right"/>
+        <Grid Margin="5 0 0 0" Grid.Column="1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <solution:SolutionView Grid.Column="0" DataContext="{Binding SolutionViewModel}"/>
+                <Rectangle Grid.Row="1" VerticalAlignment="Stretch" Fill="Black" Width="1" Margin="10 0 0 0" HorizontalAlignment="Right"/>
+            </Grid>
+            <history:HistoryView Margin="20 0 0 0" Grid.Column="1" DataContext="{Binding HistoryViewModel}"/>
+        </Grid>
+    </Grid>
+</Window>

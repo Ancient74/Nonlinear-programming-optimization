@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Lagrande.Solution.SolutionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Lagrande.Solution"
+             xmlns:solutionitem="clr-namespace:Lagrande.Solution.SolutionItem"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="300">
+    <Grid Background="White">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Label Content="Решение"/>
+            </StackPanel>
+            <Grid Grid.Row="1">
+                <ScrollViewer>
+                    <ItemsControl x:Name="items" ItemsSource="{Binding SolutionList}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0 10 0 10" Orientation="Horizontal">
+                                    <solutionitem:SolutionItemView DataContext="{Binding}" Width="250"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <Label Content="F(x) =" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Result}" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

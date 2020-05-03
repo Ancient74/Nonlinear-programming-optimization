@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Lagrande.History.HistoryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Lagrande.History"
+             xmlns:historyitem="clr-namespace:Lagrande.History.HistoryItem"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="300">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="История"/>
+            <Button Grid.Column="1" Content="Очистить историю" Command="{Binding ClearCommand}" />
+        </Grid>
+        <ScrollViewer Grid.Row="1">
+            <ListView ItemsSource="{Binding History}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentPresenter>
+                            <ContentPresenter.InputBindings>
+                                <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding DataContext.DoubleClickCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}"/>
+                            </ContentPresenter.InputBindings>
+                            <ContentPresenter.Content>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <historyitem:HistoryItemView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" DataContext="{Binding}"/>
+                                    <Button Margin="10 0 0 0" Content="Удалить" Grid.Row="1" HorizontalAlignment="Left" Grid.Column="0" Command="{Binding DataContext.RemoveItemCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}"/>
+                                </Grid>
+                            </ContentPresenter.Content>
+                        </ContentPresenter>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
