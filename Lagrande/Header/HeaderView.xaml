@@ -5,15 +5,29 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Lagrande.Header"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="1200">
+             d:DesignHeight="175" d:DesignWidth="1200">
     <Grid Background="White">
-        <StackPanel Orientation="Vertical">
-            <Label Content="Автор: Чуркін Р.Д. КН-416б"/>
-            <Label Content="Розробка моделей і програмних рішень&#xD;&#xA;задачі управління структурою &#xD;&#xA;інвестіційного портфеля"/>
-        </StackPanel>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+            <Label HorizontalAlignment="Center" Content="МІНІСТЕРСТВО ОСВІТИ І НАУКИ УКРАЇНИ"/>
             <Label HorizontalAlignment="Center" Content="ХАРКІВСЬКИЙ ПОЛІТЕХНІЧНИЙ ІНСТИТУТ"/>
             <Label HorizontalAlignment="Center" Content="КАФЕДРА ПРОГРАМНОЇ ІНЖЕНЕРІЇ ТА ІНФОРМАЦІЙНИХ ТЕХНОЛОГИЙ УПРАВЛІННЯ"/>
+            <Label HorizontalAlignment="Center" Content="Дипломна робота на тему:"/>
+            <Rectangle Height="1" Fill="Red"/>
+            <Label HorizontalAlignment="Center" Foreground="Red" Content="Розробка моделей і програмних рішень задачі управління структурою інвестіційного портфеля"/>
+            <Rectangle Height="1" Fill="Red"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+            <StackPanel.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                </Style>
+            </StackPanel.Resources>
+            <Label Content="Виконав:"/>
+            <Label Content="студент групи КН-416б"/>
+            <Label Content="Чуркін Радислав"/>
+            <Label Margin="0 10 0 0" Content="Перевірив:"/>
+            <Label Content="проф. каф. ПІІТУ"/>
+            <Label Content="Голоскоков О. Е."/>
         </StackPanel>
     </Grid>
 </UserControl>
